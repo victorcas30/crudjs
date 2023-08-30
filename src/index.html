@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    </head>
+    <body>
+        <h1>CRUD JS</h1>
+        <table class="table table-hover">
+            <thead>
+
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Nombre</td>
+                    <td> <input class="form-control form-control-sm inputEmpleados" type="text" id="nombre" /> </td>
+                </tr>
+                <tr>
+                    <td>Apellido</td>
+                    <td> <input class="form-control form-control-sm inputEmpleados" type="text" id="apellido" /> </td>
+                </tr>
+                <tr>
+                    <td>DUI</td>
+                    <td> <input class="form-control form-control-sm inputEmpleados" type="text" id="dui" /> </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button class="btn btn-dark" id="btnAgregar">Agregar</button>
+        <button class="btn btn-primary" id="btnGuardarCambios" style="display: none;">Guardar Cambios</button>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>nombre</th>
+                    <th>apellido</th>
+                    <th>dui</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="tbody-empleados">
+                
+            </tbody>
+        </table>
+    </body>
+</html>
+
+<script type="module">
+
+import { getEmpleados } from "./getApi.js";
+import { getEmpleadosApi, mostrarEmpleados, setEmpleados, setEmpleadosEditar} from "./main.js";
+
+document.addEventListener("DOMContentLoaded", () => {
+    // getEmpleados().then(result => {
+    //     const { empleados } = result;
+    //     mostrarEmpleados(empleados);
+    // })
+
+    getEmpleadosApi();
+});
+
+document.getElementById("btnAgregar").addEventListener("click",() => {
+    setEmpleados(document.getElementsByClassName("inputEmpleados"));
+    getEmpleadosApi();
+})
+document.getElementById("btnGuardarCambios").addEventListener("click",() => {
+    setEmpleadosEditar(document.getElementsByClassName("inputEmpleados"));
+    getEmpleadosApi();
+})
+
+
+
+</script>
